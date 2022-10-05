@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Group group1 = new Group("GroupA", null);
+        Group group1 = new Group("GroupA");
         Group groupNew = new Group();
 
         Student student1 = new Student(Gender.Male, "Sergey", "Bahchidgi", 111, group1.getGroupName());
@@ -39,24 +39,19 @@ public class Main {
 
         System.out.println("Enter group name to search student: ");
         String groupToSearch = sc1.nextLine();
+
         if (groupToSearch.equalsIgnoreCase(group1.getGroupName())) {
             searchStudent(group1, sc1);
 
             System.out.println("---------------------");
 
-            System.out.println("Please, enter ID for deletion student from group: ");
-
-            String id = sc1.nextLine();
-            group1.removeStudentByID(Integer.parseInt(id));
+            removeStudent(group1, sc1);
         } else if (groupToSearch.equalsIgnoreCase(groupNew.getGroupName())) {
             searchStudent(groupNew, sc1);
 
             System.out.println("---------------------");
 
-            System.out.println("Please, enter ID for deletion student from group: ");
-
-            String id = sc1.nextLine();
-            groupNew.removeStudentByID(Integer.parseInt(id));
+            removeStudent(groupNew, sc1);
         } else {
             System.out.println("Group doesn't exist");
         }
@@ -74,6 +69,13 @@ public class Main {
 
     }
 
+    private static void removeStudent(Group group1, Scanner sc1) {
+        System.out.println("Please, enter ID for deletion student from group " + group1.getGroupName() + " : ");
+
+        String id = sc1.nextLine();
+        group1.removeStudentByID(Integer.parseInt(id));
+    }
+
     private static void searchStudent(Group group, Scanner sc1) {
         System.out.println("Enter surname to search student: ");
         String surname = sc1.nextLine();
@@ -88,14 +90,14 @@ public class Main {
         Student student11 = new Student();
         Scanner sc = new Scanner(System.in);
         Scanner sc1 = new Scanner(System.in);
-        System.out.println("Input student Name");
+        System.out.println("Input student Name: ");
         student11.setName(sc.nextLine());
-        System.out.println("Input student Surname");
+        System.out.println("Input student Surname: ");
         student11.setLastName(sc.nextLine());
-        System.out.println("Input student Id");
+        System.out.println("Input student Id: ");
         student11.setId(sc.nextInt());
 
-        System.out.println("Input student gender :");
+        System.out.println("Input student gender: ");
         System.out.println("1 - Male, 2 - Female");
 
         int gender = sc.nextInt();
