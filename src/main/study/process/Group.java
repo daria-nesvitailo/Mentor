@@ -1,12 +1,14 @@
 package main.study.process;
 
-import main.exceptions.GroupOverflowException;
 import main.exceptions.StudentNotFoundException;
+
+import java.util.List;
+import java.util.Objects;
 
 public class Group {
 
     private String groupName;
-    private Student[] students = new Student[10];
+    private List<Student> students;
 
     public Group(String groupName) {
         super();
@@ -25,27 +27,12 @@ public class Group {
         this.groupName = groupName;
     }
 
-    public Student[] getStudens() {
+    public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudens(Student[] studens) {
-        this.students = studens;
-    }
-
-    public void addStudent(Student student) throws GroupOverflowException {
-        for (int i = 0; i < this.students.length; i++) {
-
-            if (this.students[i] != null && i == this.students.length - 1) {
-                throw new GroupOverflowException("Student " + student.getName() + " " + student.getLastName()
-                        + " can't be added to the group " + this.groupName + ". Group is full!");
-            } else if (this.students[i] == null) {
-                student.setGroupName(this.groupName);
-                this.students[i] = student;
-                System.out.println("Group: " + this.groupName + " | ID: " + student.getId() + " | Student " + student.getName() + " " + student.getLastName());
-                break;
-            }
-        }
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
     public Student searchStudentByLastName(String lastName) throws StudentNotFoundException {
@@ -65,17 +52,28 @@ public class Group {
         return foundStudent;
     }
 
-    public boolean removeStudentByID(int id) {
-        for (int i = 0; i < this.students.length; i++) {
-            if (this.students[i] != null && this.students[i].getId() == id) {
-                System.out.println("Student " + this.students[i].getName() + " " + this.students[i].getLastName() + " with student card id " + id + " is removed from group " + this.groupName);
-                this.students[i] = null;
+    public boolean hasEqualStudent(Student student){
+        for (Student studentInArr : this.students) {
+            if (student.equals(studentInArr)) {
                 return true;
             }
         }
 
         return false;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Group)) return false;
+        Group group = (Group) o;
+        return Objects.equals(getGroupName(), group.getGroupName()) &&
+                Objects.equals(getStudents(), group.getStudents());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getGroupName(), getStudents());
     }
 
 }

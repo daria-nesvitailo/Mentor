@@ -1,5 +1,7 @@
 package main.study.process;
 
+import java.util.Objects;
+
 public class Human {
     private Gender gender;
     private String lastName;
@@ -14,7 +16,6 @@ public class Human {
 
     public Human() {
         super();
-
     }
 
     public Gender getGender() {
@@ -46,5 +47,19 @@ public class Human {
         return "gender = " + gender + ", name= " + name + ", lastName = " + lastName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Human)) return false;
+        Human human = (Human) o;
+        return getGender() == human.getGender() &&
+                Objects.equals(getLastName(), human.getLastName()) &&
+                Objects.equals(getName(), human.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getGender(), getLastName(), getName());
+    }
 
 }

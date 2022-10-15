@@ -9,6 +9,7 @@ import main.study.process.Student;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -31,6 +32,17 @@ public class Main {
 
         populateStudents(group1, student1, student2, student3, student4, student5, student6, student7, student8, student9, student10);
 
+
+        int indexOf = group1.getStudents().indexOf(student8);
+        group1.getStudents().remove(indexOf);
+        group1.getStudents().remove(student7);
+
+
+        // todo
+//        final List<Student> studentList = Arrays.asList(group1.getStudens());
+//        studentList.get(0);
+//        studentList.add(new Student());
+
         System.out.println("---------------------");
 
         Scanner sc1 = addNewStudent(group1, groupNew);
@@ -45,19 +57,24 @@ public class Main {
 
             System.out.println("---------------------");
 
-            removeStudent(group1, sc1);
+//            removeStudent(group1, sc1);
         } else if (groupToSearch.equalsIgnoreCase(groupNew.getGroupName())) {
             searchStudent(groupNew, sc1);
 
             System.out.println("---------------------");
 
-            removeStudent(groupNew, sc1);
+//            removeStudent(groupNew, sc1);
         } else {
             System.out.println("Group doesn't exist");
         }
 
         System.out.println("---------------------");
 
+        sortStudent(student1, student2, student3, student4, student5, student6, student7, student8, student9);
+    }
+
+    private static void sortStudent(Student student1, Student student2, Student student3, Student student4, Student student5,
+                                    Student student6, Student student7, Student student8, Student student9) {
         Student[] students = new Student[]{student1, student2, student3, student4, student5, student6, student7, student8, student9};
         Arrays.sort(students, Comparator.nullsFirst(new SortStudentsByLastName()));
         System.out.println("Sorted students: ");
@@ -67,13 +84,7 @@ public class Main {
             System.out.println(student.getLastName());
         }
 
-    }
-
-    private static void removeStudent(Group group1, Scanner sc1) {
-        System.out.println("Please, enter ID for deletion student from group " + group1.getGroupName() + " : ");
-
-        String id = sc1.nextLine();
-        group1.removeStudentByID(Integer.parseInt(id));
+        List<Student> studentList = Arrays.asList(students);
     }
 
     private static void searchStudent(Group group, Scanner sc1) {
@@ -111,19 +122,11 @@ public class Main {
         System.out.println("Enter groupname");
         String groupName = sc1.nextLine();
         if (group1.getGroupName().equalsIgnoreCase(groupName)) {
-            try {
-                group1.addStudent(student11);
-            } catch (GroupOverflowException e) {
-                System.out.println(e.getMessage());
-            }
+            group1.getStudents().add(student11);
             student11.setGroupName(group1.getGroupName());
         } else {
             newGroup.setGroupName(groupName);
-            try {
-                newGroup.addStudent(student11);
-            } catch (GroupOverflowException e) {
-                System.out.println(e.getMessage());
-            }
+            //                newGroup.addStudent(student11);
             student11.setGroupName(groupName);
         }
 
@@ -132,19 +135,18 @@ public class Main {
     }
 
     private static void populateStudents(Group group1, Student student1, Student student2, Student student3, Student student4, Student student5, Student student6, Student student7, Student student8, Student student9, Student student10) {
-        try {
-            group1.addStudent(student1);
-            group1.addStudent(student2);
-            group1.addStudent(student3);
-            group1.addStudent(student4);
-            group1.addStudent(student5);
-            group1.addStudent(student6);
-            group1.addStudent(student7);
-            group1.addStudent(student8);
-            group1.addStudent(student9);
-            group1.addStudent(student10);
-        } catch (GroupOverflowException e) {
-            System.out.println(e.getMessage());
-        }
+        //            group1.addStudent(student1);
+//            group1.addStudent(student2);
+//            group1.addStudent(student3);
+//            group1.addStudent(student4);
+//            group1.addStudent(student5);
+//            group1.addStudent(student6);
+//            group1.addStudent(student7);
+//            group1.addStudent(student8);
+//            group1.addStudent(student9);
+//            group1.addStudent(student10);
+
+        boolean b = group1.hasEqualStudent(student10);
+        System.out.println(b);
     }
 }
