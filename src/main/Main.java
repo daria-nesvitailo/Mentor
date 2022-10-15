@@ -31,7 +31,7 @@ public class Main {
         Student student10 = new Student(Gender.Male, "Mikhail", "Krasnov", 120, group1.getGroupName());
 
         populateStudents(group1, student1, student2, student3, student4, student5, student6, student7, student8, student9, student10);
-
+//
 
         int indexOf = group1.getStudents().indexOf(student8);
         group1.getStudents().remove(indexOf);
