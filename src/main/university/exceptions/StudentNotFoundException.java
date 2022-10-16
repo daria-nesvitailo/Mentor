@@ -1,4 +1,4 @@
-package main.exceptions;
+package main.university.exceptions;
 
 public class StudentNotFoundException extends Exception {
 

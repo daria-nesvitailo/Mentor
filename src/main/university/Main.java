@@ -1,11 +1,6 @@
-package main;
+package main.university;
 
-import main.exceptions.GroupOverflowException;
-import main.exceptions.StudentNotFoundException;
-import main.study.process.Gender;
-import main.study.process.Group;
-import main.study.process.SortStudentsByLastName;
-import main.study.process.Student;
+import main.university.exceptions.StudentNotFoundException;
 
 import java.util.Arrays;
 import java.util.Comparator;

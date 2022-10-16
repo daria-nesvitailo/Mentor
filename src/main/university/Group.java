@@ -1,6 +1,6 @@
-package main.study.process;
+package main.university;
 
-import main.exceptions.StudentNotFoundException;
+import main.university.exceptions.StudentNotFoundException;
 
 import java.util.List;
 import java.util.Objects;

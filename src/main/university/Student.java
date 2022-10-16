@@ -1,4 +1,4 @@
-package main.study.process;
+package main.university;
 
 import java.util.Objects;
 
